@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Visitor Check-In</title>
+</head>
+<body>
+  <h2>Visitor Check-In Form</h2>
+  <form id="checkInForm">
+    <label>Full Name:</label><br>
+    <input type="text" name="name"><br><br>
+
+    <label>Company:</label><br>
+    <input type="text" name="company"><br><br>
+
+    <label>Purpose of Visit:</label><br>
+    <input type="text" name="purpose"><br><br>
+
+    <label>Contact Number:</label><br>
+    <input type="text" name="contact"><br><br>
+
+    <input type="submit" value="Check In">
+  </form>
+
+  <script>
+    const form = document.getElementById('checkInForm');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const data = new FormData(form);
+      fetch('https://script.google.com/macros/s/AKfycbyBsdB_Z0YN_PM7s3oK4aHe0rcw0mfZkJNnDod_3p5dY-XHz8Y1NGSkga5B-XVv0EiPkw/exec', {
+        method: 'POST',
+        body: data
+      }).then(res => {
+        alert("Check-in successful!");
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>
