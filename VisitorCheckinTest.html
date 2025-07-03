@@ -2,21 +2,24 @@
 <html>
 <head>
   <title>Visitor Check-In</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
 </head>
 <body>
   <h2>Visitor Check-In Form</h2>
+
   <form id="checkInForm">
     <label>Full Name:</label><br>
-    <input type="text" name="name"><br><br>
+    <input type="text" name="name" required><br><br>
 
     <label>Company:</label><br>
-    <input type="text" name="company"><br><br>
+    <input type="text" name="company" required><br><br>
 
     <label>Purpose of Visit:</label><br>
-    <input type="text" name="purpose"><br><br>
+    <input type="text" name="purpose" required><br><br>
 
     <label>Contact Number:</label><br>
-    <input type="text" name="contact"><br><br>
+    <input type="text" name="contact" required><br><br>
 
     <input type="submit" value="Check In">
   </form>
@@ -26,12 +29,17 @@
     form.addEventListener('submit', e => {
       e.preventDefault();
       const data = new FormData(form);
+
       fetch('https://script.google.com/macros/s/AKfycbyBsdB_Z0YN_PM7s3oK4aHe0rcw0mfZkJNnDod_3p5dY-XHz8Y1NGSkga5B-XVv0EiPkw/exec', {
         method: 'POST',
         body: data
-      }).then(res => {
+      })
+      .then(res => {
         alert("Check-in successful!");
         form.reset();
+      })
+      .catch(err => {
+        alert("There was an error submitting the form.");
       });
     });
   </script>
